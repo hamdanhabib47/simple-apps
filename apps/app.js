@@ -9,30 +9,32 @@ const logger = require('./middleware/logger')
 app.use(logger)
 const connection = require('./middleware/db_connect');
 
+app.disable("x-powered-by");
+
 // Dashboard
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.get('/app1', (req, res) => {
-  res.send('Hello this Apps 1!')
+    res.send('Hello this Apps 1!')
 });
 
 app.get('/app2', (req, res) => {
-  res.send('Hello this App 2!')
+    res.send('Hello this App 2!')
 });
 
 app.get('/users', (req, res, next) => {
-  const sql = "SELECT * FROM tb_data ORDER BY id desc"
-  connection.query(sql,(error, fields) => {
-    if (error) {
-      console.log('error', error)
-    } else {
-      res.send(fields)
-    }
-  })
+    const sql = "SELECT * FROM tb_data ORDER BY id desc"
+    connection.query(sql, (error, fields) => {
+        if (error) {
+            console.log('error', error)
+        } else {
+            res.send(fields)
+        }
+    })
 });
 
 app.listen(process.env.APP_PORT, () => {
-  console.log(`Example app listening on port ${process.env.APP_PORT}`)
+    console.log(`Example app listening on port ${process.env.APP_PORT}`)
 })
 
 module.exports = app
