@@ -1,6 +1,7 @@
 services:
   apps:
     container_name: ct-simpleapps-habib
+    iamges: simpleapps-habib
     build: ./apps
     ports:
       - "10005:3000"
