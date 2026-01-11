@@ -1,7 +1,7 @@
 services:
   apps:
     container_name: ct-simpleapps-habib
-    image: simpleapps-habib
+    image: deni02/simpleapps-habib
     build: ./apps
     ports:
       - "10005:3000"
